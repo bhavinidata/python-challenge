@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[14]:
+# In[1]:
 
 
 def main():
@@ -30,12 +30,18 @@ def main():
     total_votes = len(voter_id)
 
     # Print the results
-    print(f"Election Results")
-    print(f"------------------------")
-    print(f"Total Votes: {total_votes}")
+#     print(f"Election Results")
+#     print(f"------------------------")
+#     print(f"Total Votes: {total_votes}")
 
+    print(f"""
+Election Results
+------------------------
+Total Votes: {total_votes}
+------------------------
+""")
     # create a dictionary for each candidate with name as key and total votes as value.
-    # check if key is not in the dictionary, add one with value 
+    # check if key is not in the dictionary, add key and one to the value, 
     # otherwise just increase the value to get the total votes for each candidate.
     for name in candidate_list:
         if name in new_dict:
@@ -47,33 +53,43 @@ def main():
     output_file = os.path.join("elect_Res.txt")
     # Print output to the terminal as well as in text file
     with open (output_file, "w") as datafile:
-        print(f"Election Results", file = datafile)
-        print(f"------------------------", file = datafile)
-        print(f"Total Votes: {total_votes}", file = datafile)
-        print(f"------------------------")
+        print(f"""
+Election Results
+------------------------
+Total Votes: {total_votes}
+------------------------
+""", file = datafile)
+#         print(f"Election Results", file = datafile)
+#         print(f"------------------------", file = datafile)
+#         print(f"Total Votes: {total_votes}", file = datafile)
+#         print(f"------------------------")
         for name in new_dict:
             total_per = format(round((new_dict[name]/total_votes)*100), ".3f")
             print(f"{name}: {total_per}% ({new_dict[name]})")
             print(f"{name}: {total_per}% ({new_dict[name]})", file = datafile)
         winner = max(new_dict, key = new_dict.get)
-        print(f"------------------------")
-        print(f"------------------------", file = datafile)
-        print(f"Winner: {winner}")
-        print(f"Winner: {winner}", file = datafile)
-        print(f"------------------------")
-        print(f"------------------------", file = datafile)
+        print(f"""
+------------------------
+Winner: {winner}
+------------------------
+""")
+        print(f"""
+------------------------
+Winner: {winner}
+------------------------
+""", file = datafile)
+        
+#         print(f"------------------------")
+#         print(f"------------------------", file = datafile)
+#         print(f"Winner: {winner}")
+#         print(f"Winner: {winner}", file = datafile)
+#         print(f"------------------------")
+#         print(f"------------------------", file = datafile)
         
 if __name__ == "__main__":
     main()
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
