@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[15]:
 
 
 import os
@@ -32,39 +32,43 @@ with open (csv_path, "r") as bankanalysisfile:
             monthlychange["dates"].append(row[0])
             monthlychange["change"].append(change_in_profit_losses)
 
-print(f"Financial Analysis")
-print(f"---------------------------")
-
 # Find the total months
 total_month = len(date)
-print(f"Total Months: {total_month}")
 
 # Find net proft/Losses
 net_profit_losses = sum(profit_losses)
-print(f"Total: ${net_profit_losses}")
 
 # Find the average of monthly changes in profit losses.
 avg_of_changes = sum(monthlychange["change"])/(len(monthlychange["change"]))
-print(f"Average change: {round(avg_of_changes,2)}")
 
 max_profit = max(monthlychange["change"])
 max_loss = min(monthlychange["change"])
 max_profit_month = monthlychange["dates"][monthlychange["change"].index(max_profit)]
-print(f"Greatest Increase in Profits: {max_profit_month}, (${max_profit})")
 max_loss_month = monthlychange["dates"][monthlychange["change"].index(max_loss)]
-print(f"Greatest Decrease in Profits: {max_loss_month}, (${max_loss})")
+
+# print output to terminal
+print(f"""Financial Analysis
+---------------------------
+Total Months: {total_month}
+Total: ${net_profit_losses}
+Average change: {round(avg_of_changes,2)}
+Greatest Increase in Profits: {max_profit_month}, (${max_profit})
+Greatest Decrease in Profits: {max_loss_month}, (${max_loss})
+""")
 
 # set the output file path.
 output_file = os.path.join("financial_analysis.txt")
-# Print output to the terminal as well as in text file
+# Print output to the text file
 with open (output_file, "w") as datafile:
-    print(f"Financial Analysis", file = datafile)
-    print(f"---------------------------", file = datafile)
-    print(f"Total Months: {total_month}", file = datafile)
-    print(f"Total: ${net_profit_losses}", file = datafile)
-    print(f"Average change: {round(avg_of_changes,2)}", file = datafile)
-    print(f"Greatest Increase in Profits: {max_profit_month}, (${max_profit})", file = datafile)
-    print(f"Greatest Decrease in Profits: {max_loss_month}, (${max_loss})", file = datafile)
+    print(f"""
+Financial Analysis
+---------------------------
+Total Months: {total_month}
+Total: ${net_profit_losses}
+Average change: {round(avg_of_changes,2)}
+Greatest Increase in Profits: {max_profit_month}, (${max_profit})
+Greatest Decrease in Profits: {max_loss_month}, (${max_loss})
+""", file = datafile)
 
 
 # In[ ]:
